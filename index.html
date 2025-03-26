@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#f3f6fc">
+    <meta name="msapplication-navbutton-color" content="#f3f6fc">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <link rel="icon" type="image/x-icon" href="https://i.imgur.com/n4zJhma.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/n4zJhma.png">
+    <link rel="shortcut icon" href="https://i.imgur.com/n4zJhma.png">
+
+    <title>mObywatel</title>
+    <link rel="manifest" href="./pwa/manifest.json">
+    <script src="./pwa/service-worker.js" defer></script>
+    <link rel="stylesheet" href="./styles/index.css">
+</head>
+
+<body>
+    <div id="loading-screen" class="loading-screen">
+        <img src="https://i.imgur.com/wEDerI2.png" alt="Logo Polski" class="loading-logo" loading="lazy">
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="https://i.imgur.com/wEDerI2.png" alt="Logo Polski" class="logo" loading="lazy">
+            <span class="app-name">mObywatel</span>
+        </header>
+
+        <div class="welcome-section">
+            <h1 id="greeting">Dzień dobry!</h1>
+            <p class="subheader">Zaloguj się do aplikacji.</p>
+        </div>
+
+        <script>
+            function updateGreeting() {
+                const hour = new Date().getHours();
+                const greeting = document.getElementById("greeting");
+
+                if (hour >= 18 || hour < 6) {
+                    greeting.textContent = "Dobry wieczór!";
+                } else {
+                    greeting.textContent = "Dzień dobry!";
+                }
+            }
+            updateGreeting();
+        </script>
+
+        <div class="input-panel">
+            <label for="password">Hasło</label>
+            <div class="input-wrapper">
+                <input type="password" id="password" placeholder="">
+                <button class="pasword-input">
+                    <img src="https://imgur.com/vYgoKN4.png" alt="Pokaż hasło">
+                </button>
+            </div>
+            <a href="#" class="forgot-password">Nie pamiętasz hasła?</a>
+        </div>
+
+        <footer>
+            <div class="buttons">
+                <button class="login-btn" onclick="redirectToPage()">Zaloguj się</button>
+            </div>
+            <div class="footer-info">
+                <img src="https://imgur.com/xVHV7Nf.png" alt="COI" class="coi" >
+                <div class="ministry">
+                    Ministerstwo<br>Cyfryzacji
+                    <span class="red-line"></span>
+                </div>
+                <span class="version">wersja 4.53.1 (4)</span>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        function redirectToPage() {
+            document.body.classList.add("slide-out");
+        
+            setTimeout(() => {
+                window.location.href = "home.html";
+            }, 400);
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./pwa/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker zarejestrowany');
+                    })
+                    .catch(err => {
+                        console.log('Błąd rejestracji ServiceWorker:', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
