@@ -376,10 +376,3 @@ p, input{
         height: 80px;
     }
 }
-
-@media (min-width: 768px) {
-    .container {
-        width: 85%;
-        max-width: 1200px;
-    }
-}
