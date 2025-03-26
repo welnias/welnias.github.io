@@ -229,7 +229,7 @@ p, input{
     font-weight: 600;
 }
 
-.card{
+.card {
     display: grid;
     position: relative;
     overflow: hidden;
@@ -238,6 +238,7 @@ p, input{
     width: 90%;
     max-width: 340px;
     background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Cień tylko na dole */
 }
 
 .background{
