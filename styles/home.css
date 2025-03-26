@@ -367,11 +367,7 @@ p, input{
 
 /* Responsywność */
 @media (max-width: 480px) {
-    .card {
-        height: 200px;
-        width: 100%;
-    }
-    
+
     .service_name {
         font-size: 14px;
     }
